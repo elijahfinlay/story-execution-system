@@ -293,7 +293,7 @@
     border-color: var(--accent);
   }
 
-  textarea { min-height: 100px; resize: vertical; line-height: 1.5; }
+  textarea { min-height: 100px; resize: none; overflow: hidden; line-height: 1.5; }
 
   .row { display: flex; gap: 12px; }
   .row > * { flex: 1; }
@@ -1305,6 +1305,16 @@ function resetBrief() {
   renderCharacters();
   renderLocations();
 }
+
+// AUTO-RESIZE TEXTAREAS
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = el.scrollHeight + 'px';
+}
+
+document.addEventListener('input', function(e) {
+  if (e.target.tagName === 'TEXTAREA') autoResize(e.target);
+});
 
 // Init
 renderCharacters();
