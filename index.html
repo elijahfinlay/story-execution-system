@@ -243,6 +243,68 @@
 
   .prompt-content:hover { border-color: var(--border-hover); }
 
+  /* HOW TO USE */
+  .guide-content {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+
+  .guide-section { margin-bottom: 32px; }
+  .guide-section:last-child { margin-bottom: 0; }
+
+  .guide-section-header {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .guide-content h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 20px 0 10px;
+  }
+
+  .guide-content p {
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .guide-content strong { color: var(--accent); }
+
+  .guide-steps, .guide-practices {
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  .guide-steps li, .guide-practices li {
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  .guide-pipeline {
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  .guide-pipeline li {
+    margin-bottom: 6px;
+    padding-left: 4px;
+    font-weight: 600;
+  }
+
   /* BRIEF FORM */
   .form-section { margin-bottom: 32px; }
 
@@ -481,6 +543,12 @@
       </button>
       <button class="nav-btn" onclick="showView('action-writer', this)">
         <span class="nav-num">07</span> Action Writer
+      </button>
+    </div>
+
+    <div class="nav-section" style="margin-top:auto; padding-bottom:16px;">
+      <button class="nav-btn" onclick="showView('how-to-use', this)">
+        <span class="nav-num">?</span> How to Use
       </button>
     </div>
   </nav>
@@ -749,19 +817,17 @@ RULES
               <label class="field-label">Script</label>
               <textarea id="bf-script" placeholder="Paste below or attach" style="min-height:160px"></textarea>
             </div>
-            <div class="row">
-              <div class="field">
-                <label class="field-label">Duration Target</label>
-                <textarea id="bf-duration" style="min-height:64px" placeholder="e.g., 60 seconds, 2 minutes. Leave blank → system infers from script length"></textarea>
-              </div>
-              <div class="field">
-                <label class="field-label">Workflow</label>
-                <select id="bf-workflow">
-                  <option>Image-to-video</option>
-                  <option>Text-to-video</option>
-                  <option>Mixed</option>
-                </select>
-              </div>
+            <div class="field">
+              <label class="field-label">Duration Target</label>
+              <input type="text" id="bf-duration" placeholder="e.g., 60 seconds, 2 minutes. Leave blank → system infers from script length">
+            </div>
+            <div class="field">
+              <label class="field-label">Workflow</label>
+              <select id="bf-workflow">
+                <option>Image-to-video</option>
+                <option>Text-to-video</option>
+                <option>Mixed</option>
+              </select>
             </div>
           </div>
 
@@ -1161,6 +1227,80 @@ RULES
 - Use named camera moves with speed. No loose descriptions.
 - If a shot would require multiple actions to make sense, flag it — it may need to be split. Note it for the operator.
 - Output every shot. No summaries, no "and so on."</div>
+        </div>
+      </div>
+
+      <!-- HOW TO USE -->
+      <div class="prompt-view" id="view-how-to-use">
+        <div class="prompt-header">
+          <div>
+            <div class="prompt-title">How to Use</div>
+            <div class="prompt-subtitle">Full system walkthrough</div>
+          </div>
+        </div>
+        <div class="guide-content">
+          <div class="guide-section">
+            <div class="guide-section-header">Quick Start</div>
+            <ol class="guide-steps">
+              <li>Paste the Creative Expansion prompt into a new chat, then paste your concept. Pick a direction.</li>
+              <li>Paste the Research Compiler prompt into a new chat, then paste your chosen direction and project subject. Get organized research. (Skip if the project doesn't need factual grounding.)</li>
+              <li>Paste the Script Writer prompt into a new chat, then paste the direction, your notes, and research if applicable. Get your finished script.</li>
+              <li>Fill out the Brief — script, visual style, camera default, audio direction, characters, locations, models.</li>
+              <li>Paste the Breakdown Engine prompt into a new chat, then paste your Brief. Review the shot list, tweak if needed.</li>
+              <li>Paste the Frame Writer prompt into a new chat, then paste the approved shot list and Brief. Scan for consistency.</li>
+              <li>Paste the Action Writer prompt into a new chat, then paste frame descriptions, shot list metadata, and Brief. Get your full prompt package.</li>
+              <li>Open your gen tools, work through the package shot by shot top to bottom. Generate frame images first, approve, then generate video using approved images as references.</li>
+            </ol>
+          </div>
+
+          <div class="guide-section">
+            <div class="guide-section-header">The Pipeline</div>
+            <ol class="guide-pipeline">
+              <li>Creative Expansion</li>
+              <li>Research Compiler <span class="nav-tag">OPT</span></li>
+              <li>Script Writer</li>
+              <li>Project Brief</li>
+              <li>Breakdown Engine</li>
+              <li>Frame Writer</li>
+              <li>Action Writer</li>
+            </ol>
+          </div>
+
+          <div class="guide-section">
+            <div class="guide-section-header">The Short Version</div>
+            <p>Start with your concept — paste it into the Creative Expansion prompt in a new chat, pick a direction from what it gives you. If the project needs factual grounding, new chat, paste the direction into the Research Compiler, get your organized research. New chat, paste the direction plus any research plus your notes into the Script Writer, get your finished script. Fill out the Brief with that script plus your visual direction, characters, locations, and models. New chat, paste the Brief into the Breakdown Engine, review the shot list. New chat, paste the shot list and Brief into the Frame Writer, scan the frame descriptions. New chat, paste everything into the Action Writer, get your full prompt package. Open your gen tools, work through it shot by shot top to bottom. Done.</p>
+          </div>
+
+          <div class="guide-section">
+            <div class="guide-section-header">How to Use the Full System</div>
+            <p>You have two systems. The creative system feeds into the production system. Each stage is a new chat. Every time.</p>
+
+            <h3>Creative System <span style="font-weight:400; color:var(--text-hint);">(when you need it)</span></h3>
+            <p><strong>Chat 1 — Creative Expansion.</strong> Paste the Creative Expansion prompt, then paste your concept — whatever you have. Client brief, rough idea, single sentence, a vibe. You get 3-5 fully developed directions. Pick one, combine elements, or write notes on what you want adjusted.</p>
+            <p><strong>Chat 2 — Research Compiler (optional).</strong> Only when the project needs factual grounding — real events, real people, real places, history, process. New chat. Paste the Research Compiler prompt, then paste your chosen direction and project subject. You get organized, verified research — core facts, timeline, details, quotes, context. Skip this entirely for fictional or abstract work.</p>
+            <p><strong>Chat 3 — Script Writer.</strong> New chat. Paste the Script Writer prompt, then paste your chosen direction, your notes, and the research if you did it. You get a finished script and production metadata. That script goes into your Brief.</p>
+            <p style="color:var(--text-hint); font-style:italic;">Skip the entire creative system if you already have a finished script.</p>
+
+            <h3>Production System</h3>
+            <p><strong>Fill out the Brief.</strong> Not a chat — just you filling in the template. Paste your script in, set your visual style, camera default, audio direction, characters, locations, models. 10-15 minutes.</p>
+            <p><strong>Chat 4 — Breakdown Engine.</strong> New chat. Paste the Breakdown Engine prompt, then paste your completed Brief. You get a full shot list with functions, energy, camera, continuity. Review it. If something's off, note the changes and tell it to revise.</p>
+            <p><strong>Chat 5 — Frame Writer.</strong> New chat. Paste the Frame Writer prompt, then paste your approved shot list and Brief. You get every frame description, style suffix, master string library, character and location strings. Scan for consistency.</p>
+            <p><strong>Chat 6 — Action Writer.</strong> New chat. Paste the Action Writer prompt, then paste the frame descriptions, shot list metadata, and Brief. You get every action prompt, motion intensity, negative prompts, sound cues, narration lines if applicable, continuity notes, generation settings. This is your final deliverable.</p>
+            <p><strong>Generate.</strong> Open your tools. Work through the package top to bottom, shot by shot. Generate the frame image first, approve it, then use it as the reference for the action prompt. Follow the continuity notes for reference image reuse. If a generation fails, use the revision protocol.</p>
+          </div>
+
+          <div class="guide-section">
+            <div class="guide-section-header">Best Practices</div>
+            <ul class="guide-practices">
+              <li><strong>New chat every stage.</strong> Non-negotiable. Clean context means reliable output.</li>
+              <li><strong>Don't edit the prompts mid-project.</strong> Improve them between projects, not during one.</li>
+              <li><strong>The Brief is your leverage.</strong> More specific Brief means less correction downstream.</li>
+              <li><strong>Review the Breakdown Engine output carefully.</strong> If shot functions and energy tags are right here, everything downstream flows.</li>
+              <li><strong>Continuity is your job at generation time.</strong> The system tracks it. You enforce it with reference images.</li>
+              <li><strong>Keep the revision protocol close.</strong> When a generation fails, follow it in order. Don't guess.</li>
+              <li><strong>You carry information between chats.</strong> Paste the outputs from previous stages into the next one. Nothing transfers automatically.</li>
+            </ul>
+          </div>
         </div>
       </div>
 
