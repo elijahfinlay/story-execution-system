@@ -743,19 +743,16 @@ RULES
             <div class="form-section-header">Project Info</div>
             <div class="field">
               <label class="field-label">Project</label>
-              <input type="text" id="bf-project" placeholder="Client / project name — what is this">
-              <p class="field-hint">Client/project name — what is this.</p>
+              <input type="text" id="bf-project" placeholder="Client/project name — what is this">
             </div>
             <div class="field">
               <label class="field-label">Script</label>
-              <textarea id="bf-script" placeholder="Paste your finished script here" style="min-height:160px"></textarea>
-              <p class="field-hint">Paste below or attach.</p>
+              <textarea id="bf-script" placeholder="Paste below or attach" style="min-height:160px"></textarea>
             </div>
             <div class="row">
               <div class="field">
                 <label class="field-label">Duration Target</label>
-                <input type="text" id="bf-duration" placeholder="e.g., 60 seconds, 2 minutes">
-                <p class="field-hint">e.g., 60 seconds, 2 minutes. Leave blank → system infers from script length.</p>
+                <input type="text" id="bf-duration" placeholder="e.g., 60 seconds, 2 minutes. Leave blank → system infers from script length">
               </div>
               <div class="field">
                 <label class="field-label">Workflow</label>
@@ -764,7 +761,6 @@ RULES
                   <option>Text-to-video</option>
                   <option>Mixed</option>
                 </select>
-                <p class="field-hint">Image-to-video / Text-to-video / Mixed. Default: image-to-video.</p>
               </div>
             </div>
           </div>
@@ -773,36 +769,30 @@ RULES
             <div class="form-section-header">Visual Direction</div>
             <div class="field">
               <label class="field-label">Style</label>
-              <textarea id="bf-style" placeholder='e.g., "Warm analog film grain, golden hour, earthy tones"' style="min-height:70px"></textarea>
-              <p class="field-hint">The look. e.g., "Warm analog film grain, golden hour, earthy tones" or "Cold, clinical, high contrast, sterile lighting." A few sentences max.</p>
+              <textarea id="bf-style" style="min-height:70px" placeholder='The look. e.g., "Warm analog film grain, golden hour, earthy tones" or "Cold, clinical, high contrast, sterile lighting." A few sentences max.'></textarea>
             </div>
             <div class="field">
               <label class="field-label">Color Palette</label>
-              <input type="text" id="bf-palette" placeholder="e.g., Browns, deep greens, amber">
-              <p class="field-hint">Optional. e.g., "Browns, deep greens, amber" or "Desaturated blues and grays." Leave blank → inferred from style.</p>
+              <input type="text" id="bf-palette" placeholder='Optional. e.g., "Browns, deep greens, amber" or "Desaturated blues and grays." Leave blank → inferred from style.'>
             </div>
             <div class="field">
               <label class="field-label">Camera Default</label>
-              <textarea id="bf-camera" placeholder='e.g., "Smooth cinematic, slow movements"' style="min-height:60px"></textarea>
-              <p class="field-hint">The project's dominant camera personality. e.g., "Smooth cinematic, slow movements" or "Raw handheld, documentary feel." This is the baseline — the system deviates when the script demands it.</p>
+              <textarea id="bf-camera" style="min-height:60px" placeholder='The project&#39;s dominant camera personality. e.g., "Smooth cinematic, slow movements" or "Raw handheld, documentary feel." This is the baseline — the system deviates when the script demands it.'></textarea>
             </div>
             <div class="field">
               <label class="field-label">Audio Direction</label>
-              <input type="text" id="bf-audio" placeholder='e.g., "Quiet, natural, minimal"'>
-              <p class="field-hint">Optional. The sonic world. e.g., "Quiet, natural, minimal" or "Dense urban, mechanical, layered." Leave blank → inferred from style and script.</p>
+              <input type="text" id="bf-audio" placeholder='Optional. The sonic world. e.g., "Quiet, natural, minimal" or "Dense urban, mechanical, layered." Leave blank → inferred from style and script.'>
             </div>
           </div>
 
           <div class="form-section">
             <div class="form-section-header">Characters</div>
-            <p class="field-hint" style="margin-bottom:12px">Physical appearance, wardrobe, distinguishing features, age, build, emotional presence. As detailed as you want — the system stores all of it and compresses to generation-ready length per shot. Focus on what makes them visually recognizable and consistent across frames.</p>
             <div id="characters-container"></div>
             <button class="btn-add" onclick="addCharacter()">+ Add Character</button>
           </div>
 
           <div class="form-section">
             <div class="form-section-header">Locations</div>
-            <p class="field-hint" style="margin-bottom:12px">Lighting quality, key textures, atmosphere, time of day, key visual elements. As detailed as you want — the system compresses at output.</p>
             <div id="locations-container"></div>
             <button class="btn-add" onclick="addLocation()">+ Add Location</button>
           </div>
@@ -812,21 +802,18 @@ RULES
             <div class="row">
               <div class="field">
                 <label class="field-label">Image Model</label>
-                <input type="text" id="bf-img-model" value="Nano Banana Pro">
-                <p class="field-hint">e.g., Nano Banana Pro, Midjourney, Flux. Default: Nano Banana Pro.</p>
+                <input type="text" id="bf-img-model" value="Nano Banana Pro" placeholder="e.g., Nano Banana Pro, Midjourney, Flux. Default: Nano Banana Pro">
               </div>
               <div class="field">
                 <label class="field-label">Video Model</label>
-                <input type="text" id="bf-vid-model" value="Kling 3.0">
-                <p class="field-hint">e.g., Kling 3.0, Runway, Veo. Default: Kling 3.0.</p>
+                <input type="text" id="bf-vid-model" value="Kling 3.0" placeholder="e.g., Kling 3.0, Runway, Veo. Default: Kling 3.0">
               </div>
             </div>
           </div>
 
           <div class="form-section">
             <div class="form-section-header">Notes</div>
-            <textarea id="bf-notes" placeholder="References, things to avoid, client requests, mood references, films to draw from..."></textarea>
-            <p class="field-hint">Anything else — references, things to avoid, specific client requests, mood references, films to draw from, things you've tried that didn't work. Freeform.</p>
+            <textarea id="bf-notes" placeholder="Anything else — references, things to avoid, specific client requests, mood references, films to draw from, things you've tried that didn't work. Freeform."></textarea>
           </div>
 
           <div class="form-actions">
@@ -1230,7 +1217,7 @@ function renderCharacters() {
         <input type="text" placeholder="Character ${i+1} name" value="${esc(ch.name)}" onchange="characters[${i}].name=this.value" style="flex:1">
         ${characters.length > 1 ? `<button class="btn-remove" onclick="characters.splice(${i},1);renderCharacters()">Remove</button>` : ''}
       </div>
-      <textarea placeholder="Description — focus on what makes them visually recognizable" onchange="characters[${i}].desc=this.value" style="min-height:80px">${esc(ch.desc)}</textarea>
+      <textarea placeholder="Physical appearance, wardrobe, distinguishing features, age, build, emotional presence. As detailed as you want — the system stores all of it and compresses to generation-ready length per shot. Focus on what makes them visually recognizable and consistent across frames." onchange="characters[${i}].desc=this.value" style="min-height:80px">${esc(ch.desc)}</textarea>
     </div>
   `).join('');
 }
@@ -1245,7 +1232,7 @@ function renderLocations() {
         <input type="text" placeholder="Location ${i+1} name" value="${esc(l.name)}" onchange="locations[${i}].name=this.value" style="flex:1">
         ${locations.length > 1 ? `<button class="btn-remove" onclick="locations.splice(${i},1);renderLocations()">Remove</button>` : ''}
       </div>
-      <textarea placeholder="Description — lighting, textures, atmosphere, key visual elements" onchange="locations[${i}].desc=this.value" style="min-height:80px">${esc(l.desc)}</textarea>
+      <textarea placeholder="Lighting quality, key textures, atmosphere, time of day, key visual elements. As detailed as you want — the system compresses at output." onchange="locations[${i}].desc=this.value" style="min-height:80px">${esc(l.desc)}</textarea>
     </div>
   `).join('');
 }
