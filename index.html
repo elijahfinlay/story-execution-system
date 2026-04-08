@@ -744,16 +744,18 @@ RULES
             <div class="field">
               <label class="field-label">Project</label>
               <input type="text" id="bf-project" placeholder="Client / project name — what is this">
+              <p class="field-hint">Client/project name — what is this.</p>
             </div>
             <div class="field">
               <label class="field-label">Script</label>
               <textarea id="bf-script" placeholder="Paste your finished script here" style="min-height:160px"></textarea>
+              <p class="field-hint">Paste below or attach.</p>
             </div>
             <div class="row">
               <div class="field">
                 <label class="field-label">Duration Target</label>
-                <input type="text" id="bf-duration" placeholder="e.g., 60 seconds">
-                <p class="field-hint">Leave blank → inferred from script</p>
+                <input type="text" id="bf-duration" placeholder="e.g., 60 seconds, 2 minutes">
+                <p class="field-hint">e.g., 60 seconds, 2 minutes. Leave blank → system infers from script length.</p>
               </div>
               <div class="field">
                 <label class="field-label">Workflow</label>
@@ -762,6 +764,7 @@ RULES
                   <option>Text-to-video</option>
                   <option>Mixed</option>
                 </select>
+                <p class="field-hint">Image-to-video / Text-to-video / Mixed. Default: image-to-video.</p>
               </div>
             </div>
           </div>
@@ -771,34 +774,35 @@ RULES
             <div class="field">
               <label class="field-label">Style</label>
               <textarea id="bf-style" placeholder='e.g., "Warm analog film grain, golden hour, earthy tones"' style="min-height:70px"></textarea>
+              <p class="field-hint">The look. e.g., "Warm analog film grain, golden hour, earthy tones" or "Cold, clinical, high contrast, sterile lighting." A few sentences max.</p>
             </div>
             <div class="field">
               <label class="field-label">Color Palette</label>
               <input type="text" id="bf-palette" placeholder="e.g., Browns, deep greens, amber">
-              <p class="field-hint">Optional — inferred from style if blank</p>
+              <p class="field-hint">Optional. e.g., "Browns, deep greens, amber" or "Desaturated blues and grays." Leave blank → inferred from style.</p>
             </div>
             <div class="field">
               <label class="field-label">Camera Default</label>
               <textarea id="bf-camera" placeholder='e.g., "Smooth cinematic, slow movements"' style="min-height:60px"></textarea>
-              <p class="field-hint">Dominant camera personality — system deviates when the script demands it</p>
+              <p class="field-hint">The project's dominant camera personality. e.g., "Smooth cinematic, slow movements" or "Raw handheld, documentary feel." This is the baseline — the system deviates when the script demands it.</p>
             </div>
             <div class="field">
               <label class="field-label">Audio Direction</label>
               <input type="text" id="bf-audio" placeholder='e.g., "Quiet, natural, minimal"'>
-              <p class="field-hint">Optional — inferred from style and script if blank</p>
+              <p class="field-hint">Optional. The sonic world. e.g., "Quiet, natural, minimal" or "Dense urban, mechanical, layered." Leave blank → inferred from style and script.</p>
             </div>
           </div>
 
           <div class="form-section">
             <div class="form-section-header">Characters</div>
-            <p class="field-hint" style="margin-bottom:12px">Physical appearance, wardrobe, distinguishing features, age, build, emotional presence. As detailed as you want.</p>
+            <p class="field-hint" style="margin-bottom:12px">Physical appearance, wardrobe, distinguishing features, age, build, emotional presence. As detailed as you want — the system stores all of it and compresses to generation-ready length per shot. Focus on what makes them visually recognizable and consistent across frames.</p>
             <div id="characters-container"></div>
             <button class="btn-add" onclick="addCharacter()">+ Add Character</button>
           </div>
 
           <div class="form-section">
             <div class="form-section-header">Locations</div>
-            <p class="field-hint" style="margin-bottom:12px">Lighting quality, key textures, atmosphere, time of day, key visual elements.</p>
+            <p class="field-hint" style="margin-bottom:12px">Lighting quality, key textures, atmosphere, time of day, key visual elements. As detailed as you want — the system compresses at output.</p>
             <div id="locations-container"></div>
             <button class="btn-add" onclick="addLocation()">+ Add Location</button>
           </div>
@@ -809,10 +813,12 @@ RULES
               <div class="field">
                 <label class="field-label">Image Model</label>
                 <input type="text" id="bf-img-model" value="Nano Banana Pro">
+                <p class="field-hint">e.g., Nano Banana Pro, Midjourney, Flux. Default: Nano Banana Pro.</p>
               </div>
               <div class="field">
                 <label class="field-label">Video Model</label>
                 <input type="text" id="bf-vid-model" value="Kling 3.0">
+                <p class="field-hint">e.g., Kling 3.0, Runway, Veo. Default: Kling 3.0.</p>
               </div>
             </div>
           </div>
@@ -820,6 +826,7 @@ RULES
           <div class="form-section">
             <div class="form-section-header">Notes</div>
             <textarea id="bf-notes" placeholder="References, things to avoid, client requests, mood references, films to draw from..."></textarea>
+            <p class="field-hint">Anything else — references, things to avoid, specific client requests, mood references, films to draw from, things you've tried that didn't work. Freeform.</p>
           </div>
 
           <div class="form-actions">
@@ -1301,6 +1308,7 @@ function downloadBrief() {
 }
 
 function resetBrief() {
+  if (!confirm('Reset all fields? This cannot be undone.')) return;
   ['bf-project','bf-script','bf-duration','bf-style','bf-palette','bf-camera','bf-audio','bf-notes'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('bf-workflow').value = 'Image-to-video';
   document.getElementById('bf-img-model').value = 'Nano Banana Pro';
