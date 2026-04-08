@@ -752,7 +752,7 @@ RULES
             <div class="row">
               <div class="field">
                 <label class="field-label">Duration Target</label>
-                <input type="text" id="bf-duration" placeholder="e.g., 60 seconds, 2 minutes. Leave blank → system infers from script length">
+                <textarea id="bf-duration" style="min-height:64px" placeholder="e.g., 60 seconds, 2 minutes. Leave blank → system infers from script length"></textarea>
               </div>
               <div class="field">
                 <label class="field-label">Workflow</label>
@@ -769,19 +769,19 @@ RULES
             <div class="form-section-header">Visual Direction</div>
             <div class="field">
               <label class="field-label">Style</label>
-              <textarea id="bf-style" style="min-height:70px" placeholder='The look. e.g., "Warm analog film grain, golden hour, earthy tones" or "Cold, clinical, high contrast, sterile lighting." A few sentences max.'></textarea>
+              <textarea id="bf-style" style="min-height:86px" placeholder='The look. e.g., "Warm analog film grain, golden hour, earthy tones" or "Cold, clinical, high contrast, sterile lighting." A few sentences max.'></textarea>
             </div>
             <div class="field">
               <label class="field-label">Color Palette</label>
-              <input type="text" id="bf-palette" placeholder='Optional. e.g., "Browns, deep greens, amber" or "Desaturated blues and grays." Leave blank → inferred from style.'>
+              <textarea id="bf-palette" style="min-height:64px" placeholder='Optional. e.g., "Browns, deep greens, amber" or "Desaturated blues and grays." Leave blank → inferred from style.'></textarea>
             </div>
             <div class="field">
               <label class="field-label">Camera Default</label>
-              <textarea id="bf-camera" style="min-height:60px" placeholder='The project&#39;s dominant camera personality. e.g., "Smooth cinematic, slow movements" or "Raw handheld, documentary feel." This is the baseline — the system deviates when the script demands it.'></textarea>
+              <textarea id="bf-camera" style="min-height:106px" placeholder='The project&#39;s dominant camera personality. e.g., "Smooth cinematic, slow movements" or "Raw handheld, documentary feel." This is the baseline — the system deviates when the script demands it.'></textarea>
             </div>
             <div class="field">
               <label class="field-label">Audio Direction</label>
-              <input type="text" id="bf-audio" placeholder='Optional. The sonic world. e.g., "Quiet, natural, minimal" or "Dense urban, mechanical, layered." Leave blank → inferred from style and script.'>
+              <textarea id="bf-audio" style="min-height:86px" placeholder='Optional. The sonic world. e.g., "Quiet, natural, minimal" or "Dense urban, mechanical, layered." Leave blank → inferred from style and script.'></textarea>
             </div>
           </div>
 
@@ -813,7 +813,7 @@ RULES
 
           <div class="form-section">
             <div class="form-section-header">Notes</div>
-            <textarea id="bf-notes" placeholder="Anything else — references, things to avoid, specific client requests, mood references, films to draw from, things you've tried that didn't work. Freeform."></textarea>
+            <textarea id="bf-notes" style="min-height:86px" placeholder="Anything else — references, things to avoid, specific client requests, mood references, films to draw from, things you've tried that didn't work. Freeform."></textarea>
           </div>
 
           <div class="form-actions">
@@ -1217,7 +1217,7 @@ function renderCharacters() {
         <input type="text" placeholder="Character ${i+1} name" value="${esc(ch.name)}" onchange="characters[${i}].name=this.value" style="flex:1">
         ${characters.length > 1 ? `<button class="btn-remove" onclick="characters.splice(${i},1);renderCharacters()">Remove</button>` : ''}
       </div>
-      <textarea placeholder="Physical appearance, wardrobe, distinguishing features, age, build, emotional presence. As detailed as you want — the system stores all of it and compresses to generation-ready length per shot. Focus on what makes them visually recognizable and consistent across frames." onchange="characters[${i}].desc=this.value" style="min-height:80px">${esc(ch.desc)}</textarea>
+      <textarea placeholder="Physical appearance, wardrobe, distinguishing features, age, build, emotional presence. As detailed as you want — the system stores all of it and compresses to generation-ready length per shot. Focus on what makes them visually recognizable and consistent across frames." onchange="characters[${i}].desc=this.value" style="min-height:128px">${esc(ch.desc)}</textarea>
     </div>
   `).join('');
 }
@@ -1232,7 +1232,7 @@ function renderLocations() {
         <input type="text" placeholder="Location ${i+1} name" value="${esc(l.name)}" onchange="locations[${i}].name=this.value" style="flex:1">
         ${locations.length > 1 ? `<button class="btn-remove" onclick="locations.splice(${i},1);renderLocations()">Remove</button>` : ''}
       </div>
-      <textarea placeholder="Lighting quality, key textures, atmosphere, time of day, key visual elements. As detailed as you want — the system compresses at output." onchange="locations[${i}].desc=this.value" style="min-height:80px">${esc(l.desc)}</textarea>
+      <textarea placeholder="Lighting quality, key textures, atmosphere, time of day, key visual elements. As detailed as you want — the system compresses at output." onchange="locations[${i}].desc=this.value" style="min-height:86px">${esc(l.desc)}</textarea>
     </div>
   `).join('');
 }
