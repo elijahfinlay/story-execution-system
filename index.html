@@ -200,6 +200,30 @@
   .copy-btn:hover { opacity: 0.9; }
   .copy-btn.copied { background: var(--success); color: white; }
 
+  .prompt-wrapper {
+    position: relative;
+  }
+
+  .prompt-wrapper .copied-toast {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    background: var(--success);
+    color: white;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .prompt-wrapper .copied-toast.show { opacity: 1; }
+
   .prompt-content {
     background: var(--card);
     border: 1px solid var(--border);
@@ -214,30 +238,10 @@
     max-height: calc(100vh - 200px);
     overflow-y: auto;
     cursor: pointer;
-    position: relative;
     transition: border-color 0.15s ease;
   }
 
   .prompt-content:hover { border-color: var(--border-hover); }
-
-  .prompt-content .copied-toast {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: var(--success);
-    color: white;
-    font-family: var(--font-sans);
-    font-size: 12px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 4px;
-    letter-spacing: 0.5px;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    pointer-events: none;
-  }
-
-  .prompt-content .copied-toast.show { opacity: 1; }
 
   /* BRIEF FORM */
   .form-section { margin-bottom: 32px; }
@@ -493,7 +497,8 @@
           </div>
           <button class="copy-btn" onclick="copyPrompt('creative-expansion', this)">Copy Prompt</button>
         </div>
-        <div class="prompt-content" id="prompt-creative-expansion" onclick="copyFromContent(this)"><span class="copied-toast">Copied</span>CREATIVE EXPANSION — STAGE 1
+        <div class="prompt-wrapper"><span class="copied-toast">Copied</span>
+        <div class="prompt-content" id="prompt-creative-expansion" onclick="copyFromContent(this)">CREATIVE EXPANSION — STAGE 1
 
 You are a world-class creative director for AI video production. You receive a concept — sometimes a full vision, sometimes a single sentence, sometimes a vague feeling. You output multiple fully developed creative directions the filmmaker didn't see coming. Your job is to expand their thinking, not interrogate it. Give more than expected. Ask nothing.
 
@@ -556,6 +561,7 @@ RULES
 - Push past obvious. The filmmaker came to you to think bigger, not to confirm what they already had.
 - Be specific. "A woman walks through a city" is nothing. "A woman traces her hand along a crumbling wall while the city rebuilds itself behind her" is a direction.
 - No filler, no preamble, no "here are some ideas for you." Go straight to the output.</div>
+        </div>
       </div>
 
       <!-- RESEARCH COMPILER -->
@@ -567,7 +573,8 @@ RULES
           </div>
           <button class="copy-btn" onclick="copyPrompt('research-compiler', this)">Copy Prompt</button>
         </div>
-        <div class="prompt-content" id="prompt-research-compiler" onclick="copyFromContent(this)"><span class="copied-toast">Copied</span>RESEARCH COMPILER — OPTIONAL STAGE
+        <div class="prompt-wrapper"><span class="copied-toast">Copied</span>
+        <div class="prompt-content" id="prompt-research-compiler" onclick="copyFromContent(this)">RESEARCH COMPILER — OPTIONAL STAGE
 
 You are a research compiler for AI video production. You receive a chosen creative direction and a project subject. You output organized, verified research that the Script Writer will use to write with factual authority. That is your only job. You do not write scripts, suggest creative directions, or ask questions. You search, verify, organize, and compile.
 
@@ -626,6 +633,7 @@ RULES
 - If the subject is thin and research turns up very little, say so honestly. Don't pad with filler.
 - Chronological material must be in order — earliest to latest. No exceptions.
 - No filler, no preamble. Go straight to the output.</div>
+        </div>
       </div>
 
       <!-- SCRIPT WRITER -->
@@ -637,7 +645,8 @@ RULES
           </div>
           <button class="copy-btn" onclick="copyPrompt('script-writer', this)">Copy Prompt</button>
         </div>
-        <div class="prompt-content" id="prompt-script-writer" onclick="copyFromContent(this)"><span class="copied-toast">Copied</span>SCRIPT WRITER — STAGE 2
+        <div class="prompt-wrapper"><span class="copied-toast">Copied</span>
+        <div class="prompt-content" id="prompt-script-writer" onclick="copyFromContent(this)">SCRIPT WRITER — STAGE 2
 
 You are a world-class short-form scriptwriter for AI video production. You receive a chosen creative direction and any notes or adjustments from the filmmaker. You output a finished script ready to be pasted into a production brief. That is your only job. You do not ask questions.
 
@@ -717,6 +726,7 @@ RULES
 - If research is provided, the script must honor all verified facts. Creative interpretation is encouraged — invention that contradicts the research is not.
 - The script must be complete and ready to paste into a production brief. No placeholders, no "insert here," no unfinished thoughts.
 - No filler, no preamble. Go straight to the script.</div>
+        </div>
       </div>
 
       <!-- PROJECT BRIEF FORM -->
@@ -829,7 +839,8 @@ RULES
           </div>
           <button class="copy-btn" onclick="copyPrompt('breakdown-engine', this)">Copy Prompt</button>
         </div>
-        <div class="prompt-content" id="prompt-breakdown-engine" onclick="copyFromContent(this)"><span class="copied-toast">Copied</span>BREAKDOWN ENGINE — STAGE 1
+        <div class="prompt-wrapper"><span class="copied-toast">Copied</span>
+        <div class="prompt-content" id="prompt-breakdown-engine" onclick="copyFromContent(this)">BREAKDOWN ENGINE — STAGE 1
 
 You are a shot breakdown engine for AI video production. You receive a project brief and a finished script. You output a structured shot list. That is your only job. You do not generate image prompts, action prompts, or generation settings. You do not ask questions. You work with what you're given and fill gaps with smart defaults.
 
@@ -914,6 +925,7 @@ RULES
 - Montage sequences follow their own rhythm — rapid consecutive DEVELOP shots or rapid BREATHE shots are valid when the script clearly calls for montage pacing.
 - If total shot durations significantly exceed the project's duration target, note the discrepancy at the end of your output.
 - Output the complete shot list. Every shot. No summaries, no "and so on."</div>
+        </div>
       </div>
 
       <!-- FRAME WRITER -->
@@ -925,7 +937,8 @@ RULES
           </div>
           <button class="copy-btn" onclick="copyPrompt('frame-writer', this)">Copy Prompt</button>
         </div>
-        <div class="prompt-content" id="prompt-frame-writer" onclick="copyFromContent(this)"><span class="copied-toast">Copied</span>FRAME WRITER — STAGE 2
+        <div class="prompt-wrapper"><span class="copied-toast">Copied</span>
+        <div class="prompt-content" id="prompt-frame-writer" onclick="copyFromContent(this)">FRAME WRITER — STAGE 2
 
 You are a frame description writer for AI video production. You receive an approved shot list and the project brief. You output generation-ready frame descriptions for every shot. That is your only job. You do not write action prompts, generation settings, or sound cues. You do not ask questions.
 
@@ -988,6 +1001,7 @@ RULES
 - If the brief's character, subject, or location detail is thin, infer what you need from the script and shot list context. Note what you inferred.
 - Structure and keyword placement may vary by image generation model — if the brief specifies a model, account for how that model interprets prompts. If no model is specified, default to front-loading the subject.
 - Output every shot. No summaries, no "and so on."</div>
+        </div>
       </div>
 
       <!-- ACTION WRITER -->
@@ -999,7 +1013,8 @@ RULES
           </div>
           <button class="copy-btn" onclick="copyPrompt('action-writer', this)">Copy Prompt</button>
         </div>
-        <div class="prompt-content" id="prompt-action-writer" onclick="copyFromContent(this)"><span class="copied-toast">Copied</span>ACTION WRITER — STAGE 3
+        <div class="prompt-wrapper"><span class="copied-toast">Copied</span>
+        <div class="prompt-content" id="prompt-action-writer" onclick="copyFromContent(this)">ACTION WRITER — STAGE 3
 
 You are an action prompt writer for AI video production. You receive frame descriptions, the shot list metadata, and the project brief. You output generation-ready action prompts, generation settings, and sound cues for every shot. That is your only job. You do not modify frame descriptions. You do not ask questions.
 
@@ -1152,6 +1167,7 @@ RULES
 - Use named camera moves with speed. No loose descriptions.
 - If a shot would require multiple actions to make sense, flag it — it may need to be split. Note it for the operator.
 - Output every shot. No summaries, no "and so on."</div>
+        </div>
       </div>
 
     </div>
@@ -1179,8 +1195,7 @@ function toggleMenu() {
 // COPY PROMPT
 function copyPrompt(id, btn) {
   const el = document.getElementById('prompt-' + id);
-  const text = el.textContent.replace(/^Copied/, '');
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(el.textContent).then(() => {
     btn.textContent = '✓ Copied';
     btn.classList.add('copied');
     setTimeout(() => { btn.textContent = 'Copy Prompt'; btn.classList.remove('copied'); }, 2000);
@@ -1188,8 +1203,8 @@ function copyPrompt(id, btn) {
 }
 
 function copyFromContent(el) {
-  const text = el.textContent.replace(/^Copied/, '');
-  const toast = el.querySelector('.copied-toast');
+  const text = el.textContent;
+  const toast = el.parentElement.querySelector('.copied-toast');
   navigator.clipboard.writeText(text).then(() => {
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 1500);
