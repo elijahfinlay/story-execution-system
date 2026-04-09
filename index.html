@@ -891,6 +891,8 @@ RULES
           <div class="form-actions">
             <button class="btn-primary" id="bf-copy-btn" onclick="copyBrief()">Copy as Markdown</button>
             <button class="btn-primary" id="bf-dl-btn" onclick="downloadBrief()">Download .md</button>
+            <button class="btn-primary" id="bf-import-btn" onclick="document.getElementById('bf-import-file').click()">Import .md</button>
+            <input type="file" id="bf-import-file" accept=".md,.txt,.markdown" style="display:none" onchange="importBrief(this)">
             <button class="btn-secondary" onclick="resetBrief()">Reset</button>
           </div>
         </div>
@@ -1468,6 +1470,72 @@ function resetBrief() {
   locations = [{ name: '', desc: '' }];
   renderCharacters();
   renderLocations();
+}
+
+function importBrief(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const btn = document.getElementById('bf-import-btn');
+  file.text().then(md => {
+    const field = (label) => {
+      const re = new RegExp(`\\*\\*${label}:\\*\\*\\s*\\n?([\\s\\S]*?)(?=\\n\\*\\*|\\n---|$)`);
+      const m = md.match(re);
+      return m ? m[1].trim() : '';
+    };
+    const strip = (v, fallback) => (!v || v.startsWith('[')) ? '' : (v === fallback ? '' : v);
+
+    document.getElementById('bf-project').value = strip(field('Project'), '');
+    document.getElementById('bf-script').value = strip(field('Script'), '');
+    document.getElementById('bf-duration').value = strip(field('Duration target'), 'System infers from script length');
+    const wf = field('Workflow');
+    if (wf && ['Image-to-video','Text-to-video','Mixed'].includes(wf)) document.getElementById('bf-workflow').value = wf;
+    document.getElementById('bf-style').value = strip(field('Style'), '');
+    document.getElementById('bf-palette').value = strip(field('Color palette'), 'Inferred from style');
+    document.getElementById('bf-camera').value = strip(field('Camera default'), '');
+    document.getElementById('bf-audio').value = strip(field('Audio direction'), 'Inferred from style and script');
+    document.getElementById('bf-img-model').value = field('Image model') || 'Nano Banana Pro';
+    document.getElementById('bf-vid-model').value = field('Video model') || 'Kling 3.0';
+
+    // Parse characters
+    const charSection = md.match(/## Characters\n\n([\s\S]*?)(?=\n---|\n## |$)/);
+    characters = [];
+    if (charSection) {
+      const charBlocks = charSection[1].matchAll(/\*\*Character \d+ — (.+?):\*\*\n([\s\S]*?)(?=\n\*\*Character|\n---|$)/g);
+      for (const m of charBlocks) {
+        const name = m[1].trim() === '[Unnamed]' ? '' : m[1].trim();
+        const desc = m[2].trim() === '[No description]' ? '' : m[2].trim();
+        characters.push({ name, desc });
+      }
+    }
+    if (characters.length === 0) characters.push({ name: '', desc: '' });
+    renderCharacters();
+
+    // Parse locations
+    const locSection = md.match(/## Locations\n\n([\s\S]*?)(?=\n---|\n## |$)/);
+    locations = [];
+    if (locSection) {
+      const locBlocks = locSection[1].matchAll(/\*\*Location \d+ — (.+?):\*\*\n([\s\S]*?)(?=\n\*\*Location|\n---|$)/g);
+      for (const m of locBlocks) {
+        const name = m[1].trim() === '[Unnamed]' ? '' : m[1].trim();
+        const desc = m[2].trim() === '[No description]' ? '' : m[2].trim();
+        locations.push({ name, desc });
+      }
+    }
+    if (locations.length === 0) locations.push({ name: '', desc: '' });
+    renderLocations();
+
+    // Parse notes
+    const notesSection = md.match(/## Notes\n\n([\s\S]*?)$/);
+    document.getElementById('bf-notes').value = notesSection ? notesSection[1].trim() : '';
+
+    // Auto-resize all textareas
+    document.querySelectorAll('#brief-form textarea').forEach(autoResize);
+
+    btn.textContent = '✓ Imported';
+    btn.classList.add('success');
+    setTimeout(() => { btn.textContent = 'Import .md'; btn.classList.remove('success'); }, 2000);
+    input.value = '';
+  });
 }
 
 // AUTO-RESIZE TEXTAREAS
