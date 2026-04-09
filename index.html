@@ -1247,9 +1247,9 @@ RULES
               <li>Paste the Research Compiler prompt into a new chat, then paste your chosen direction and project subject. Get organized research. (Skip if the project doesn't need factual grounding.)</li>
               <li>Paste the Script Writer prompt into a new chat, then paste the direction, your notes, and research if applicable. Get your finished script.</li>
               <li>Fill out the Brief — script, visual style, camera default, audio direction, characters, locations, models.</li>
-              <li>Paste the Breakdown Engine prompt into a new chat, then paste your Brief. Review the shot list, tweak if needed.</li>
-              <li>Paste the Frame Writer prompt into a new chat, then paste the approved shot list and Brief. Scan for consistency.</li>
-              <li>Paste the Action Writer prompt into a new chat, then paste frame descriptions, shot list metadata, and Brief. Get your full prompt package.</li>
+              <li>Paste the Breakdown Engine prompt into a new chat, then paste your completed Brief. Review the shot list, tweak if needed.</li>
+              <li>Paste the Frame Writer prompt into a new chat, then paste your Brief and the full Breakdown Engine output. Scan for consistency.</li>
+              <li>Paste the Action Writer prompt into a new chat, then paste your Brief, the full Breakdown Engine output, and the full Frame Writer output. Get your full prompt package.</li>
               <li>Open your gen tools, work through the package shot by shot top to bottom. Generate frame images first, approve, then generate video using approved images as references.</li>
             </ol>
           </div>
@@ -1258,7 +1258,7 @@ RULES
             <div class="guide-section-header">The Pipeline</div>
             <ol class="guide-pipeline">
               <li>Creative Expansion</li>
-              <li>Research Compiler <span class="nav-tag">OPT</span></li>
+              <li>Research Compiler (optional)</li>
               <li>Script Writer</li>
               <li>Project Brief</li>
               <li>Breakdown Engine</li>
@@ -1269,7 +1269,7 @@ RULES
 
           <div class="guide-section">
             <div class="guide-section-header">The Short Version</div>
-            <p>Start with your concept — paste it into the Creative Expansion prompt in a new chat, pick a direction from what it gives you. If the project needs factual grounding, new chat, paste the direction into the Research Compiler, get your organized research. New chat, paste the direction plus any research plus your notes into the Script Writer, get your finished script. Fill out the Brief with that script plus your visual direction, characters, locations, and models. New chat, paste the Brief into the Breakdown Engine, review the shot list. New chat, paste the shot list and Brief into the Frame Writer, scan the frame descriptions. New chat, paste everything into the Action Writer, get your full prompt package. Open your gen tools, work through it shot by shot top to bottom. Done.</p>
+            <p>Start with your concept — paste it into the Creative Expansion prompt in a new chat, pick a direction from what it gives you. If the project needs factual grounding, new chat, paste the direction into the Research Compiler, get your organized research. New chat, paste the direction plus any research plus your notes into the Script Writer, get your finished script. Fill out the Brief with that script plus your visual direction, characters, locations, and models. New chat, paste your Brief into the Breakdown Engine, review the shot list. New chat, paste your Brief and the full Breakdown Engine output into the Frame Writer, scan the frame descriptions. New chat, paste your Brief, the full Breakdown Engine output, and the full Frame Writer output into the Action Writer, get your full prompt package. Open your gen tools, work through it shot by shot top to bottom. Done.</p>
           </div>
 
           <div class="guide-section">
@@ -1285,8 +1285,8 @@ RULES
             <h3>Production System</h3>
             <p><strong>Fill out the Brief.</strong> Not a chat — just you filling in the template. Paste your script in, set your visual style, camera default, audio direction, characters, locations, models. 10-15 minutes.</p>
             <p><strong>Chat 4 — Breakdown Engine.</strong> New chat. Paste the Breakdown Engine prompt, then paste your completed Brief. You get a full shot list with functions, energy, camera, continuity. Review it. If something's off, note the changes and tell it to revise.</p>
-            <p><strong>Chat 5 — Frame Writer.</strong> New chat. Paste the Frame Writer prompt, then paste your approved shot list and Brief. You get every frame description, style suffix, master string library, character and location strings. Scan for consistency.</p>
-            <p><strong>Chat 6 — Action Writer.</strong> New chat. Paste the Action Writer prompt, then paste the frame descriptions, shot list metadata, and Brief. You get every action prompt, motion intensity, negative prompts, sound cues, narration lines if applicable, continuity notes, generation settings. This is your final deliverable.</p>
+            <p><strong>Chat 5 — Frame Writer.</strong> New chat. Paste the Frame Writer prompt, then paste your Brief and the full Breakdown Engine output. You get every frame description, style suffix, master string library, character and location strings. Scan for consistency.</p>
+            <p><strong>Chat 6 — Action Writer.</strong> New chat. Paste the Action Writer prompt, then paste your Brief, the full Breakdown Engine output, and the full Frame Writer output. You get every action prompt, motion intensity, negative prompts, sound cues, narration lines if applicable, continuity notes, generation settings. This is your final deliverable.</p>
             <p><strong>Generate.</strong> Open your tools. Work through the package top to bottom, shot by shot. Generate the frame image first, approve it, then use it as the reference for the action prompt. Follow the continuity notes for reference image reuse. If a generation fails, use the revision protocol.</p>
           </div>
 
@@ -1299,7 +1299,7 @@ RULES
               <li><strong>Review the Breakdown Engine output carefully.</strong> If shot functions and energy tags are right here, everything downstream flows.</li>
               <li><strong>Continuity is your job at generation time.</strong> The system tracks it. You enforce it with reference images.</li>
               <li><strong>Keep the revision protocol close.</strong> When a generation fails, follow it in order. Don't guess.</li>
-              <li><strong>You carry information between chats.</strong> Paste the outputs from previous stages into the next one. Nothing transfers automatically.</li>
+              <li><strong>You carry information between chats.</strong> Paste the full outputs from previous stages into the next one. Nothing transfers automatically.</li>
             </ul>
           </div>
         </div>
